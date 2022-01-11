@@ -72,9 +72,9 @@ def _save_to_file(bytes, categoria):
 def _get_directory_and_filename(categoria):
     base = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
     fechaA = fecha.split('-')
-    fechaFile = '%s-%s'.format(fechaA[0], meses[fechaA[1]])
-    directory = os.path.join(base, categoria.lower(), fechaFile)
-    filename = '%s-%s.csv'.format(categoria.lower(), fecha)
+    fechaDirectory = f'{fechaA[0]}-{meses[fechaA[1]]}'
+    directory = os.path.join(base, categoria.lower(), fechaDirectory)
+    filename = f'{categoria.lower()}-{fecha}.csv'
 
     return(directory, filename)
 
