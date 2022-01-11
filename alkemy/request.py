@@ -27,6 +27,8 @@ topicsOfInterest = ['Museos', 'Salas de Cine', 'Bibliotecas Populares']
 
 
 def download_csvs():
+    # dict to keep path to files
+    downloadedFiles = {}
     try:
         urls = requests.get(fetchUrlsFrom)
         body = urls.json()
@@ -48,10 +50,15 @@ def download_csvs():
                 )
             else:
                 topicsOfInterest.remove(categoria)
-                _save_to_file(csv.content, categoria)
+                csv.encoding = 'utf-8'
+                downloadedFiles[categoria] = _save_to_file(
+                  csv.text,
+                  categoria
+                )
                 csv.close()
 
     urls.close()
+    return downloadedFiles
 
 
 def _save_to_file(bytes, categoria):
@@ -64,9 +71,12 @@ def _save_to_file(bytes, categoria):
     if os.path.isfile(fileDir):
         os.remove(fileDir)
 
-    open(fileDir, 'wb').write(bytes)
-
+    f = open(fileDir, 'w')
+    f.write(bytes)
+    f.close()
     logging.info('file %s downloaded successfully', filename)
+
+    return fileDir
 
 
 def _get_directory_and_filename(categoria):
@@ -77,6 +87,3 @@ def _get_directory_and_filename(categoria):
     filename = f'{categoria.lower()}-{fecha}.csv'
 
     return(directory, filename)
-
-
-download_csvs()
