@@ -25,6 +25,8 @@ def migrate_up():
                 conn.commit()
     except Exception as e:
         logging.error('operation failed; error: %s', e)
+    else:
+        logging.info('migration completed successfully')
 
 
 def migrate_down():
@@ -48,6 +50,8 @@ def migrate_down():
                 conn.commit()
     except Exception as e:
         logging.error('operation failed; error: %s', e)
+    else:
+        logging.info('migration completed successfully')
 
 
 def main():
