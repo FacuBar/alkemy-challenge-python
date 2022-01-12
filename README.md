@@ -1,6 +1,6 @@
 # alkemy-python-test
 
-- Clonar repo `https://github.com/FacuBar/alkemy-challenge-python.git && cd alkemy-challenge-python`
+- Clonar repo `git clone https://github.com/FacuBar/alkemy-challenge-python.git && cd alkemy-challenge-python`
 
 - Crear entorno virtual `python3 -m venv env`
 
