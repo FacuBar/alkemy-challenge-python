@@ -8,40 +8,36 @@ CREATE TABLE espacios_culturales (
   cod_localidad       INT,
   provincia           VARCHAR(100),
   id_provincia        INT,
-  código_postal       VARCHAR(8),
+  código_postal       VARCHAR(100),
   número_de_teléfono  VARCHAR(15),
   categoría           VARCHAR(255),
-
-  CONSTRAINT pk_espacios PRIMARY KEY(nombre, provincia)  
+  fuente              VARCHAR(255),
+  cargado_en          TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE cines_aggr_provincia (
-  provincia              VARCHAR(100),
-  cantidad_pantallas     INT,
-  cantidad_butacas       INT,
-  cantidad_espcios_incaa INT,
-
-  CONSTRAINT pk_cines PRIMARY KEY(provincia)
+  provincia       VARCHAR(255),
+  pantallas       INT,
+  butacas         INT,
+  espacios_incaa  INT,
+  cargado_en       TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE registros_categoria (
-  total     INT,
-  categoria VARCHAR(255), 
-
-  CONSTRAINT pk_registros_c PRIMARY KEY(categoria)
+  categoría   VARCHAR(255), 
+  total       INT,
+  cargado_en  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE registros_fuente (
-  total   INT,
-  fuente  VARCHAR(255),
-
-  CONSTRAINT pk_registros_f PRIMARY KEY(fuente)
+  fuente      VARCHAR(255),
+  total       INT,
+  cargado_en  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE registros_provincia_categoria (
-  total     INT,
-  provincia VARCHAR(100),
-  categoria VARCHAR(255),
-
-  CONSTRAINT pk_registros_p_c PRIMARY KEY(provincia,categoria)
+  provincia   VARCHAR(100),
+  categoría   VARCHAR(255),
+  total       INT,
+  cargado_en  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );

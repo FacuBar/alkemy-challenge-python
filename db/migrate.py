@@ -16,7 +16,7 @@ def migrate_up():
         )
         sqlcontent = sqlf.read()
         sqlf.close()
-        sqlComms = sqlcontent = sqlcontent.split(';')
+        sqlComms = sqlcontent.split(';')
 
         with psycopg.connect(config('DB_URI')) as conn:
             with conn.cursor() as cur:
@@ -40,13 +40,12 @@ def migrate_down():
         )
         sqlcontent = sqlf.read()
         sqlf.close()
-        sqlComms = sqlcontent = sqlcontent.split(';')
+        sqlComms = sqlcontent.split('\n')
 
         with psycopg.connect(config('DB_URI')) as conn:
             with conn.cursor() as cur:
                 for comm in sqlComms:
                     cur.execute(comm)
-
                 conn.commit()
     except Exception as e:
         logging.error('operation failed; error: %s', e)
