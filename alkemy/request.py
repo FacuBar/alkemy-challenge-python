@@ -38,7 +38,6 @@ def download_csvs():
 
     for resource in body['result']['resources']:
         categoria = resource['name']
-        logging.info('downloading .csv for %s', categoria)
 
         if categoria in topicsOfInterest:
             try:
@@ -49,6 +48,7 @@ def download_csvs():
                     categoria, e
                 )
             else:
+                logging.info('downloading .csv for %s', categoria)
                 topicsOfInterest.remove(categoria)
                 csv.encoding = 'utf-8'
                 downloadedFiles[categoria] = _save_to_file(
